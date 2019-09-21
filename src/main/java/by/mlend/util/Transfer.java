@@ -125,11 +125,11 @@ public class Transfer {
 			String temp = line.substring(ID_START_POSITION, ID_START_POSITION+ID_LENGTH);
 			to.setId(Long.decode("0x"+temp.trim()));
 			temp = line.substring(COLOR_START_POSITION, COLOR_LENGTH+COLOR_START_POSITION);
-			to.setColor(Long.decode("0x"+temp.trim()));
+			if(!emptyString(temp))to.setColor(Long.decode("0x"+temp.trim()));
 			temp = line.substring(STORAGE_START_POSITION, STORAGE_START_POSITION+STORAGE_LENGTH);
-			to.setStorage(Long.decode("0x"+temp.trim()));
+			if(!emptyString(temp))to.setStorage(Long.decode("0x"+temp.trim()));
 			temp = line.substring(CONTRACTOR_START_POSITION, CONTRACTOR_LENGTH+CONTRACTOR_START_POSITION);
-			to.setContractor(Long.decode("0x"+temp.trim()));
+			if(!emptyString(temp))to.setContractor(Long.decode("0x"+temp.trim()));
 			temp = line.substring(HEIGHT_START_POSITION, HEIGHT_LENGTH+HEIGHT_START_POSITION);
 			to.setHeight(Integer.decode("0x"+temp.trim()));
 			temp = line.substring(WIDTH_START_POSITION, WIDTH_LENGTH+WIDTH_START_POSITION);
@@ -262,5 +262,9 @@ public class Transfer {
 			sb.append(writeContractorTO(it.next()));
 		}
 		return sb.toString();
+	}
+	
+	private static boolean emptyString(String line){
+		return line==null||line.trim().length()==0;
 	}
 }
