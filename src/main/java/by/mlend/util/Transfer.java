@@ -142,7 +142,7 @@ public class Transfer {
 			if(!EMPTY_DATE.equals(temp))to.setDateOfLeaving(Date.valueOf(temp.trim()));
 			int nameStart = NAME_ID_COUNT_START_POSITION+NAME_ID_COUNT_LENGTH;
 			temp = line.substring(NAME_ID_COUNT_START_POSITION, nameStart);
-			int nameLength = Integer.parseInt(temp.trim());
+			int nameLength = Integer.decode("0x"+temp.trim());
 			String name = line.substring(nameStart,nameStart+nameLength);
 			if(name.length()>0)to.setName(fromByteString(name));
 			String remark = line.substring(nameStart+nameLength);
