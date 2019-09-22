@@ -167,6 +167,7 @@ public class Transfer {
 	public static RemainderListTO remainderListTO(String line) throws TOException{
 		try{
 			RemainderListTO listTO = new RemainderListTO();
+			if("".equals(line))return listTO;
 			String lines[] = line.split(REMAINDERLISTTO_SPLITTER);
 			for(String to:lines)listTO.add(remainderTO(to));
 			return listTO;
@@ -210,8 +211,9 @@ public class Transfer {
 	
 	public static StorageLocationListTO storageLocationListTO(String line) throws TOException{
 		try{
-			String lines[] = line.split(STORAGELOCATIONLISTTO_SPLITTER);
 			StorageLocationListTO listTO = new StorageLocationListTO();
+			if("".equals(line))return listTO;
+			String lines[] = line.split(STORAGELOCATIONLISTTO_SPLITTER);
 			for(String s:lines)listTO.add(storageLocationTO(s));
 			return listTO;
 		}catch(RuntimeException|TOException e){
@@ -244,8 +246,9 @@ public class Transfer {
 	
 	public static ContractorListTO contractorListTO(String line) throws TOException{
 		try{
-			String lines[] = line.split(CONTRACTORLISTTO_SPLITTER);
 			ContractorListTO listTO = new ContractorListTO();
+			if("".equals(line))return listTO;
+			String lines[] = line.split(CONTRACTORLISTTO_SPLITTER);
 			for(String s:lines)listTO.add(contractorTO(s));
 			return listTO;
 		}catch(RuntimeException|TOException e){
